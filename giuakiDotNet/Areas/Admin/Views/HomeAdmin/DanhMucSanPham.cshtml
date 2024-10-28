@@ -1,0 +1,65 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<giuakiDotNet.ViewModels.MenuItemVM>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<h2>Danh mục các sản phẩm</h2>
+
+<p>
+    <a asp-action="ThemSanPhamMoi">Create New</a>
+</p>
+<p>@TempData["Message"]</p>
+<table class="table">
+    <thead>
+        <tr class="table-warning">
+
+            
+            <th>
+              #
+            </th>
+            <th>
+                Mã sản phẩm
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+
+            <th>
+                Giá
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-success">
+                <td>
+                   
+
+                </td>
+               
+
+                <td>
+                        @Html.DisplayFor(modelItem => item.MenuItemId)
+                </td>
+
+                <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                </td>
+
+                <td>
+                    <a asp-action="SuaSanPham" asp-route-maSanPham="@item.MenuItemId">Edit</a> |
+                    <a asp-action="XoaSanPham" asp-route-maSanPham="@item.MenuItemId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
