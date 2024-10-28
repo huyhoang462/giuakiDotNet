@@ -34,32 +34,36 @@ namespace giuakiDotNet.Areas.Admin.Controllers
             return View(data.ToList());
         }
 
-        ////them moi user
-        //[Route("ThemUserMoi")]
-        //[HttpGet]
-        //public IActionResult ThemUserMoi()
-        //{
-        //    return View();
-        //}
-        //[Route("ThemUserMoi")]
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult ThemUserMoi(User sanPham)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Users.Add(sanPham);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View();
-        //}
+        //them moi user
+        [Route("ThemUserMoi")]
+        [HttpGet]
+        public IActionResult ThemUserMoi()
+        {
+            return View();
+        }
+        [Route("ThemUserMoi")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ThemUserMoi(User sanPham)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Users.Add(sanPham);
+                db.SaveChanges();
+                TempData["Message"] = "Người dùng đã được thêm";
+
+                return RedirectToAction("Index");
+            }
+            TempData["Message"] = "Không thêm được";
+
+            return View();
+        }
         //them moi
         [Route("ThemSanPhamMoi")]
         [HttpGet]
         public IActionResult ThemSanPhamMoi()
         {
-            ViewBag.Category = new SelectList(db.SubCategories.ToList(), "SubCategoryId", "SubcategoryName");
+            ViewBag.Category = new SelectList(db.SubCategories.ToList(), "SubCategoryId", "SubCategoryName");
            
             return View();
         }
@@ -72,6 +76,8 @@ namespace giuakiDotNet.Areas.Admin.Controllers
             {
                 db.MenuItems.Add(sanPham);
                 db.SaveChanges();
+                TempData["Message"] = "Sản phẩm đã được thêm";
+
                 return RedirectToAction("DanhMucSanPham");
             }
             return View();
@@ -82,7 +88,7 @@ namespace giuakiDotNet.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult SuaSanPham(int maSanPham)
         {
-            ViewBag.Category = new SelectList(db.SubCategories.ToList(), "SubCategoryId", "SubcategoryName");
+            ViewBag.Category = new SelectList(db.SubCategories.ToList(), "SubCategoryId", "SubCategoryName");
 
 
             var sanPham = db.MenuItems.Find(maSanPham);
@@ -97,6 +103,8 @@ namespace giuakiDotNet.Areas.Admin.Controllers
             {
                 db.Update(sanPham);
                 db.SaveChanges();
+                TempData["Message"] = "Sản phẩm đã được sửa";
+
                 return RedirectToAction("DanhMucSanPham", "HomeAdmin");
             }
             return View(sanPham);

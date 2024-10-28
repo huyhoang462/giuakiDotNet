@@ -6,14 +6,14 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>SuaSanPham</h1>
+<h1>Sửa sản phẩm</h1>
 
 
-<h4>TDanhMucSp</h4>
+<h4>Thông tin sản phẩm</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post" asp-action="ThemSanPhamMoi">
+        <form method="post" asp-action="SuaSanPham">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label"></label>
@@ -42,7 +42,6 @@
             </div>
             <div class="form-group">
                 <label asp-for="SubCategory" class="control-label"></label>
-                <input asp-for="SubCategory" class="form-control" />
                 <select asp-for="SubCategory" class="form-control" asp-items="ViewBag.Category"></select>
 
             </div>
@@ -55,6 +54,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="DanhMucSanPham">Back to List</a>
 </div>
 

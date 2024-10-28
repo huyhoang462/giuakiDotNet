@@ -7,19 +7,16 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>ThemSanPhamMoi</h1>
+<h1>Thêm sản phẩm mới</h1>
+<p>@TempData["Message"]</p>
 
-<h4>TDanhMucSp</h4>
+<h4>Thông tin sản phẩm</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post" asp-action="ThemSanPhamMoi">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label class="control-label"></label>
-                <input asp-for="MenuItemId" class="form-control" />
-                <span asp-validation-for="MenuItemId" class="text-danger"></span>
-            </div>
+           
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -42,7 +39,6 @@
             </div>
             <div class="form-group">
                 <label asp-for="SubCategory" class="control-label"></label>
-                <input asp-for="SubCategory" class="form-control" />
                 <select asp-for="SubCategory" class="form-control" asp-items="ViewBag.Category"></select>
 
             </div>
@@ -55,6 +51,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="DanhMucSanPham">Back to List</a>
 </div>
 
