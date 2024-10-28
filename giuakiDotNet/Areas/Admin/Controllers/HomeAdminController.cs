@@ -39,6 +39,8 @@ namespace giuakiDotNet.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult ThemUserMoi()
         {
+            ViewBag.Role = new SelectList(db.Roles.ToList(), "RoleId", "RoleName");
+
             return View();
         }
         [Route("ThemUserMoi")]
@@ -88,7 +90,7 @@ namespace giuakiDotNet.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult SuaSanPham(int maSanPham)
         {
-            ViewBag.Category = new SelectList(db.SubCategories.ToList(), "SubCategoryId", "SubCategoryName");
+            ViewBag.Category = new SelectList(db.SubCategories.ToList(), "SubCategoryId", "SubCategoryName"); 
 
 
             var sanPham = db.MenuItems.Find(maSanPham);
